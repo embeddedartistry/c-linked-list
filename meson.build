@@ -1,5 +1,5 @@
-project('PROJECT_NAME',
-	['c', 'cpp'],
+project('c-linked-list',
+	['c'],
 	default_options : [
 		'warning_level=3',
 		'werror=false',
@@ -9,10 +9,9 @@ project('PROJECT_NAME',
 		# `build.*` options affect `native: true targets`
 		# plain options affect `native: false` targets.
 		'c_std=c11', 'build.c_std=c11',
-		'cpp_std=c++17', 'build.cpp_std=c++17',
 	],
 	meson_version: '>=0.54.0',
-	version: '0.1'
+	version: '1.0'
 )
 
 ################################
@@ -78,38 +77,18 @@ subdir('build/compiler/check-and-apply-flags')
 # Build Modules #
 #################
 
-# Include reusable build modules here via subdir() calls
-subdir('build/linker/linker-script-as-property')
-subdir('build/linker/linker-map')
 subdir('build/test/cmocka')
-subdir('build/objcopy')
 
-###############
-# Subprojects #
-###############
-
-libmemory_subproject = subproject('libmemory')
-etl_subproject = subproject('etl')
-
-libmemory_freelist_dep = libmemory_subproject.get_variable('libmemory_freelist_dep')
-etl_dep = etl_subproject.get_variable('etl_dep')
-
-# Configure the project to include `libc` headers by default
 #######################
 # Process Source Tree #
 #######################
 
 # Add files to this variable if you want them analyzed by clang-tidy
 clangtidy_files = []
-# Add dependencies to this array for testing with Catch2
-catch2_tests_dep = []
-
 subdir('src')
-subdir('test')
 
-# Defined after src and test so catch2_dep is fully populated
-# when creating the built-in targets
-subdir('build/test/catch2')
+# Tests currently not implemented (issue #1)
+# subdir('test')
 
 ###################
 # Tooling Modules #
