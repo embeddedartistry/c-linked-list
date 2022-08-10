@@ -38,14 +38,6 @@ if get_option('disable-stack-protection')
 	desired_common_compile_flags += '-fno-stack-protector'
 endif
 
-if get_option('disable-rtti')
-	desired_cpp_compile_flags += '-fno-rtti'
-endif
-
-if get_option('disable-exceptions')
-	desired_cpp_compile_flags += ['-fno-exceptions', '-fno-unwind-tables']
-endif
-
 if get_option('enable-pedantic')
 	desired_common_compile_flags += '-pedantic'
 else
