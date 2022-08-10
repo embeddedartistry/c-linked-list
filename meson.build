@@ -8,7 +8,7 @@ project('c-linked-list',
 		'optimization=2',
 		# `build.*` options affect `native: true targets`
 		# plain options affect `native: false` targets.
-		'c_std=c11', 'build.c_std=c11',
+		'c_std=c17', 'build.c_std=c17',
 	],
 	meson_version: '>=0.54.0',
 	version: '1.0'
@@ -21,13 +21,12 @@ project('c-linked-list',
 # Pick up our common compiler variables + desired_*_flags variables
 subdir('build/compiler')
 subdir('build/compiler/c')
-subdir('build/compiler/cpp')
 
 if get_option('debug')
 	add_project_arguments('-DDEBUG',
-		language: ['c', 'cpp'])
+		language: ['c'])
 	add_project_arguments('-DDEBUG',
-		language: ['c', 'cpp'], native: true)
+		language: ['c'], native: true)
 endif
 
 if get_option('disable-builtins')
@@ -51,15 +50,11 @@ endif
 compile_settings_list = [
 	{'lang': 'c', 'compiler': host_c_compiler, 'flags': desired_c_compile_flags, 'isnative': false},
 	{'lang': 'c', 'compiler': native_c_compiler, 'flags': desired_native_c_compile_flags, 'isnative': true},
-	{'lang': 'cpp', 'compiler': host_cpp_compiler, 'flags': desired_cpp_compile_flags, 'isnative': false},
-	{'lang': 'cpp', 'compiler': native_cpp_compiler, 'flags': desired_native_cpp_compile_flags, 'isnative': true},
 ]
 
 link_settings_list = [
 	{'lang': 'c', 'compiler': host_c_compiler, 'flags': [], 'isnative': false},
 	{'lang': 'c', 'compiler': native_c_compiler, 'flags': [], 'isnative': true},
-	{'lang': 'cpp', 'compiler': host_cpp_compiler, 'flags': [], 'isnative': false},
-	{'lang': 'cpp', 'compiler': native_cpp_compiler, 'flags': [], 'isnative': true},
 ]
 
 # Process the compilation flags
