@@ -1,10 +1,6 @@
-# Project Title
+# Header-only Linked List in C
 
-Provide an introductory paragraph, describing:
-
-* What your project does
-* Why people should consider using your project
-* Link to project home page
+This is a header-only linked list library written in C.
 
 ## Table of Contents
 
@@ -16,9 +12,6 @@ Provide an introductory paragraph, describing:
         1. [Meson Build System](#meson-build-system)
     2. [Getting the Source](#getting-the-source)
     3. [Building](#building)
-        1. [Enabling Link-time Optimization](#enabling-link-time-optimization)
-    4. [Installation](#installation)
-    5. [Usage](#usage)
 4. [Configuration Options](#configuration-options)
 5. [Documentation](#documentation)
 6. [Need Help?](#need-help)
@@ -30,21 +23,68 @@ Provide an introductory paragraph, describing:
 
 # About the Project
 
-Here you can provide more details about the project
-* What features does your project provide?
-* Short motivation for the project? (Don't be too long winded)
-* Links to the project site
+This is a header-only linked list library implemented in C. You can copy this header to your own projects, or you can consume this repository as a Meson subproject. With Meson, the header can be added to the relevant build components with the `c_linked_list_dep` variable.
 
+To use this library, embed an `ll_t` element in a structure:
+
+```c
+typedef struct
+{
+    ll_t node;
+    size_t size;
+    char* block;
+} alloc_node_t;
 ```
-Show some example code to describe what your project does
-Show some of your APIs
+
+You then need to declare a linked list variable using the `LIST_INIT` macro:
+
+```c
+LIST_INIT(free_list);
 ```
+
+Operations on the list primarily operate through your `ll_t` `struct` element.
+
+To add a new element to the list, you can use `list_add` (or `list_add_tail`, or `list_insert`) to add the `ll_t` element to the desired list variable.
+
+```c
+// Note the pointer to the node element!
+list_add(&new_memory_block->node, &free_list);
+```
+
+Removing an element only requires the `node` variable:
+
+```c
+list_del(&found_block->node);
+```
+
+Functions for iterating over the list are also provided:
+
+```c
+// Declare a variable to hold a pointer to the current element 
+// in the processing loop
+alloc_node_t* current_block = NULL;
+
+// Iterate over each element in the list
+// First param is a variable in your struct type
+// Second param is the list to iterate over
+// Third param is the ll_t element in your struct type.
+list_for_each_entry(current_block, &free_list, node)
+{
+    // perform an operation on current_block
+}
+```
+
+Full documentation and a complete list of available functions can be found in the `ll.h` file.
+
+For an full example of this library in action, see [embeddedartistry/libmemory](https://github.com/embeddedartistry/libmemory) and the ["freelist" implementation](https://github.com/embeddedartistry/libmemory/blob/master/src/malloc_freelist.c).
 
 **[Back to top](#table-of-contents)**
 
 # Project Status
 
-Describe the current release and any notes about the current state of the project. Examples: currently compiles on your host machine, but is not cross-compiling for ARM, APIs are not set, feature not implemented, etc.
+This header implementation has been constant for years.
+
+Now that this header is a standalone repository, I would like to add test cases.
 
 **[Back to top](#table-of-contents)**
 
@@ -191,18 +231,6 @@ Following that, you can run `make` (at the project root) or `ninja -C buildresul
 
 **[Back to top](#table-of-contents)**
 
-### Enabling Link-time Optimization
-
-Link-time Optimization (LTO) can be enabled during the meson configuration stage by setting the built-in option `b_lto` to `true`:
-
-```
-meson buildresults -Db_lto=true
-```
-
-This can be combined with other build options.
-
-**[Back to top](#table-of-contents)**
-
 ### Testing
 
 The tests for this library are written with CMocka, which is included as a subproject and does not need to be installed on your system. You can run the tests by issuing the following command:
@@ -221,27 +249,8 @@ The following meson project options can be set for this library when creating th
 
 * `disable-builtins` will tell the compiler not to generate built-in function
 * `disable-stack-protection` will tell the compiler not to insert stack protection calls
-* `disable-rtti` will disable RTTI for C++ projects
-* `disable-exceptions` will disable exceptions for C++ projects
-* `enable-threading` can be used to control threaded targets and libc++ threading support
 * `enable-pedantic`: Turn on `pedantic` warnings
 * `enable-pedantic-error`: Turn on `pedantic` warnings and errors
-* `hide-unimplemented-libc-apis`: Hides the header definitions for functions which are not actually implemented
-* `enable-gnu-extensions` will enable GNU libc extensions that are implemented in this library
-
-The following options can be used to configure `libc++` if used with this project:
-
-* `libcxx-use-compiler-rt`
-* `libcxx-use-llvm-libunwind`
-* `libcxx-thread-library`
-* `libcxx-has-external-thread-api`
-* `libcxx-build-external-thread-api`
-* `libcxx-enable-chrono`
-* `libcxx-enable-filesystem`
-* `libcxx-enable-stdinout`
-* `libcxx-default-newdelete`
-* `libcxx-silent-terminate`
-* `libcxx-monotonic-clock`
 
 Options can be specified using `-D` and the option name:
 
