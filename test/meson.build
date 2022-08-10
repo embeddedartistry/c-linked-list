@@ -7,10 +7,6 @@ PROJECT_test_files = files(
 
 clangtidy_files += PROJECT_test_files
 
-catch2_tests_dep += declare_dependency(
-	sources: 'catch2_test_case.cpp',
-)
-
 #######################
 # Test Compiler Flags #
 #######################
