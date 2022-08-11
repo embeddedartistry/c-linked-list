@@ -23,7 +23,7 @@ This is a header-only linked list library written in C. A
 
 # About the Project
 
-This is a header-only linked list library implemented in C. This code has been carried with me over the years, and with some research it seems that the implementation that passed into my hands was based on the Linux Kernel's implementation.
+This is a header-only linked list library implemented in C. This code has been carried with me and improved over the years. With some research it seems that the implementation that passed into my hands was based on the Linux Kernel's implementation.
 
 You can copy this header to your own projects, or you can consume this repository as a Meson subproject. With Meson, the header can be added to the relevant build components with the `c_linked_list_dep` variable.
 
@@ -86,7 +86,7 @@ For an full example of this library in action, see [embeddedartistry/libmemory](
 
 This header implementation has been constant for years.
 
-Now that this header is a standalone repository, I would like to add test cases.
+Since the header is now in a standalone repository, I would like to add test cases.
 
 **[Back to top](#table-of-contents)**
 
