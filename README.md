@@ -1,6 +1,6 @@
 # Header-only Linked List in C
 
-This is a header-only linked list library written in C. A 
+This is a header-only linked list library written in C.
 
 ## Table of Contents
 
