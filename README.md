@@ -1,6 +1,6 @@
 # Header-only Linked List in C
 
-This is a header-only linked list library written in C.
+This is a header-only linked list library written in C. A 
 
 ## Table of Contents
 
@@ -23,7 +23,9 @@ This is a header-only linked list library written in C.
 
 # About the Project
 
-This is a header-only linked list library implemented in C. You can copy this header to your own projects, or you can consume this repository as a Meson subproject. With Meson, the header can be added to the relevant build components with the `c_linked_list_dep` variable.
+This is a header-only linked list library implemented in C. This code has been carried with me over the years, and with some research it seems that the implementation that passed into my hands was based on the Linux Kernel's implementation.
+
+You can copy this header to your own projects, or you can consume this repository as a Meson subproject. With Meson, the header can be added to the relevant build components with the `c_linked_list_dep` variable.
 
 To use this library, embed an `ll_t` element in a structure:
 
