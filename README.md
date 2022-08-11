@@ -160,7 +160,7 @@ This project uses [`git-lfs`](https://git-lfs.github.com), so please install it 
 This project is hosted on GitHub. You can clone the project directly using this command:
 
 ```
-git clone --recursive git@github.com:embeddedartistry/project-skeleton.git
+git clone --recursive https://github.com/embeddedartistry/c-linked-list
 ```
 
 If you don't clone recursively, be sure to run the following command in the repository or your build will fail:
@@ -207,39 +207,7 @@ And build all targets by running
 ninja -C buildresults
 ```
 
-Cross-compilation is handled using `meson` cross files. Example files are included in the [`build/cross`](build/cross/) folder. You can write your own cross files for your specific processor by defining the toolchain, compilation flags, and linker flags. These settings will be used to compile the project.
-
-Cross-compilation must be configured using the meson command when creating the build output folder. For files stored within `build/cross`, we provide a Makefile `CROSS` to simplify the process. This variable will automatically supply the proper Meson argument, `build/cross/` prefix, and `.txt` filename extension.
-
-You can use a single file, or you can layer multiple files by separating the names with a colon.
-
-```
-make CROSS=arm:cortex-m4_hardfloat
-```
-
-You can also do this manually with the Meson interface. Note, however, that you will need to include a special `--cross-file=build/cross/embvm.txt` cross file to ensure that the required Embedded VM settings are applied.
-
-```
-meson buildresults --cross-file build/cross/arm.txt --cross-file build/cross/cortex-m4_hardfloat.txt --cross-file=build/cross/embvm.txt
-```
-
-Following that, you can run `make` (at the project root) or `ninja -C buildresults` to build the project.
-
-> **Note:** Tests will not be cross-compiled. They will only be built for the native platform.
-
 **Full instructions for working with the build system, including topics like using alternate toolchains and running supporting tooling, are documented in [Embedded Artistry's Standardized Meson Build System](https://embeddedartistry.com/fieldatlas/embedded-artistrys-standardized-meson-build-system/) on our website.**
-
-**[Back to top](#table-of-contents)**
-
-### Testing
-
-The tests for this library are written with CMocka, which is included as a subproject and does not need to be installed on your system. You can run the tests by issuing the following command:
-
-```
-make test
-```
-
-By default, test results are generated for use by the CI server and are formatted in JUnit XML. The test results XML files can be found in `buildresults/test/`.
 
 **[Back to top](#table-of-contents)**
 
@@ -295,15 +263,9 @@ If you are interested in contributing to this project, please read our [contribu
 
 ## License
 
-Copyright © 2020 Embedded Artistry LLC
+Copyright © 2022 Embedded Artistry LLC
 
 See the [LICENSE](LICENSE) file for licensing details.
-
-For other open-source licenses, please see the [Software Inventory](docs/software_inventory.xlsx).
-
-## Acknowledgments
-
-Make any public acknowledgments here
 
 **[Back to top](#table-of-contents)**
 
