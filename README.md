@@ -78,7 +78,7 @@ list_for_each_entry(current_block, &free_list, node)
 
 Full documentation and a complete list of available functions can be found in the `ll.h` file.
 
-For an full example of this library in action, see [embeddedartistry/libmemory](https://github.com/embeddedartistry/libmemory) and the ["freelist" implementation](https://github.com/embeddedartistry/libmemory/blob/master/src/malloc_freelist.c).
+For a full example of this library in action, see [embeddedartistry/libmemory](https://github.com/embeddedartistry/libmemory) and the ["freelist" implementation](https://github.com/embeddedartistry/libmemory/blob/master/src/malloc_freelist.c).
 
 **[Back to top](#table-of-contents)**
 

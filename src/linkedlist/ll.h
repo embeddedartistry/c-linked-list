@@ -155,7 +155,7 @@ typedef struct ll_head
  *	...
  * 	}
  *   @endcode
- * @param[in] head The head of of the linked list. Input should be a pointer.
+ * @param[in] head The head of the linked list. Input should be a pointer.
  */
 #define list_for_each(pos, head) for(pos = (head)->next; pos != (head); pos = pos->next)
 
@@ -185,7 +185,7 @@ typedef struct ll_head
  *	...
  * 	}
  *	@endcode
- * @param[in] head The head of of the linked list. Input should be a pointer.
+ * @param[in] head The head of the linked list. Input should be a pointer.
  */
 #define list_for_each_safe(pos, n, head) \
 	for(pos = (head)->next, n = pos->next; pos != (head); pos = n, n = pos->next)
@@ -203,7 +203,7 @@ typedef struct ll_head
  * 	}
  *  @endcode
  *
- * @param[in] head The head of of the linked list. Input should be a pointer.
+ * @param[in] head The head of the linked list. Input should be a pointer.
  *
  * @param[in] member The member which corresponds to the member name of the ll_t entry. For this
  * example struct, member would refer to `node`.
@@ -249,7 +249,7 @@ typedef struct ll_head
  *	...
  * 	}
  *   @endcode
- * @param[in] head The head of of the linked list. Input should be a pointer.
+ * @param[in] head The head of the linked list. Input should be a pointer.
  * @param[in] member The member which corresponds to the member name of the ll_t entry. For this
  * example struct, member would refer to `node`.
  * @code
