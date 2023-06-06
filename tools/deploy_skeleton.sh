@@ -90,7 +90,7 @@ CORE_FILES="docs src test tools .clang-format .clang-tidy Makefile meson.build m
 GIT_FILES=".gitattributes .github .gitignore"
 
 SUBMODULE_DIRS=("build")
-SUBMODULE_URLS=("git@github.com:embeddedartistry/meson-buildsystem.git")
+SUBMODULE_URLS=("https://github.com/embeddedartistry/meson-buildsystem")
 
 # Copy skeleton files to the destination
 cp -r $CORE_FILES $DEST_DIR

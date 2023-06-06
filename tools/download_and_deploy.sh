@@ -6,7 +6,7 @@
 
 INITIAL_DIR=$(pwd)
 cd /tmp
-git clone git@github.com:embeddedartistry/project-skeleton.git --recursive --depth 1
+git clone https://github.com/embeddedartistry/project-skeleton --recursive --depth 1
 cd project-skeleton
 bash tools/deploy_skeleton.sh $@
 cd ../
