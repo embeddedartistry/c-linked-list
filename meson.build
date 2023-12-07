@@ -10,7 +10,7 @@ project('c-linked-list',
 		# plain options affect `native: false` targets.
 		'c_std=c17', 'build.c_std=c17',
 	],
-	meson_version: '>=0.54.0',
+	meson_version: '>=0.58.0',
 	version: '1.0'
 )
 
